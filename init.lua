@@ -64,7 +64,7 @@ function uart_callback(data)
 	end
 
 	local json_str = string.format('{"rssi_dbm":%d,"co2_ppm":"%d","temperature_celsius":%d}', wifi.sta.getrssi(), mh_z19.co2, mh_z19.temp)
-	local influx_str = string.format("co2_ppm=%d,temperature_celsius=%d", mh_z19.co2, mh_z19.temp)
+	local influx_str = string.format("co2_ppm=%d,temperature_celsius=%d,abc_ticks=%d,abc_count=%d", mh_z19.co2, mh_z19.temp, mh_z19.abc_ticks, mh_z19.abc_count)
 
 	if not publishing_mqtt then
 		watchdog:start(true)
