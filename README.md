@@ -47,12 +47,17 @@ port:on("data", 9, uart_callback)
 
 function uart_callback(data)
 	if mh_z19.parse_frame(data) then
-		-- mh_z19.co2 contains the CO₂ concentration in ppm
+		-- mh_z19.co2       : CO₂ concentration [ppm]
+		-- mh_z19.temp      : device temperature [°c]
+		-- mh_z19.abc_ticks : ticks since last Automatic Baseline Correction
+		-- mh_z19.abc_count : number of Automatic Baseline Corrections performed since power-on
 	end
 end
 
 port:write(mhz19.c_query)
 ```
+
+The sensor performs a CO₂ measurement every one to five seconds, depending on hardware revision.
 
 ## Application Example
 
