@@ -16,7 +16,7 @@ ledpin = 4
 gpio.mode(ledpin, gpio.OUTPUT)
 gpio.write(ledpin, 0)
 
-mhz19 = require("mh-z19")
+mh_z19 = require("mh-z19")
 
 poll = tmr.create()
 
@@ -58,13 +58,13 @@ function connect_wifi()
 end
 
 function uart_callback(data)
-	if not mhz19.parse_frame(data) then
+	if not mh_z19.parse_frame(data) then
 		print("Invalid MH-Z19 frame")
 		return
 	end
 
-	local json_str = string.format('{"rssi_dbm":%d,"co2_ppm":"%d"}', wifi.sta.getrssi(), mhz19.co2)
-	local influx_str = string.format("co2_ppm=%d", mhz19.co2)
+	local json_str = string.format('{"rssi_dbm":%d,"co2_ppm":"%d"}', wifi.sta.getrssi(), mh_z19.co2)
+	local influx_str = string.format("co2_ppm=%d", mh_z19.co2)
 
 	if not publishing_mqtt then
 		watchdog:start(true)
@@ -94,7 +94,7 @@ function publish_influx(payload)
 end
 
 function query_data()
-	port:write(mhz19.query())
+	port:write(mh_z19.c_query)
 end
 
 function hass_register()

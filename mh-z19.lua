@@ -1,28 +1,29 @@
-local mhz19 = {}
+local mh_z19 = {}
 
-local c_read = string.char(0xff, 0x01, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79)
+mh_z19.c_query = string.char(0xff, 0x01, 0x86, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79)
 
-mhz19.co2 = nil
-mhz19.temp = nil
-mhz19.tt = nil
-mhz19.ss = nil
-mhz19.uu = nil
+mh_z19.co2 = nil
+mh_z19.temp = nil
+mh_z19.abc_count = nil
+mh_z19.abc_ticks = nil
 
-function mhz19.query()
-	return c_read
+function checksum(b1, b2, b3, b4, b5, b6, b7)
+	return 0xff - ((b1 + b2 + b3 + b4 + b5 + b6 + b7) % 0x100) + 1
 end
 
-function mhz19.parse_frame(data)
-	local head, cmd, co2h, co2l, temp, tt, ss, uh, ul = struct.unpack("BBBBBBBBB", data)
-	if head ~= 0xff or cmd ~= 0x86 then
+function mh_z19.parse_frame(data)
+	local start, cmd, co2h, co2l, temp, u1, abc_ticks, abc_count, cksum = struct.unpack("BBBBBBBBB", data)
+	if start ~= 0xff or cmd ~= 0x86 then
 		return false
 	end
-	mhz19.co2 = co2h * 256 + co2l
-	mhz19.temp = temp - 40
-	mhz19.tt = tt
-	mhz19.ss = ss
-	mhz19.uu = uh * 256 + ul
+	if checksum(cmd, co2h, co2l, temp, u1, abc_ticks, abc_count) ~= cksum then
+		return false
+	end
+	mh_z19.co2 = co2h * 256 + co2l
+	mh_z19.temp = temp - 40
+	mh_z19.abc_ticks = abc_ticks
+	mh_z19.abc_count = abc_count
 	return true
 end
 
-return mhz19
+return mh_z19

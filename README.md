@@ -41,17 +41,17 @@ levels at boot time and may therefore be unsuitable for MH-Z19 connection.
 Copy **mh-z19.lua** to your NodeMCU board and set it up as follows.
 
 ```lua
-mhz19 = require("mh-z19")
+mh_z19 = require("mh-z19")
 port = softuart.setup(9600, 1, 2)
 port:on("data", 9, uart_callback)
 
 function uart_callback(data)
-	if sds011.parse_frame(data) then
-		-- mhz19.co2 contains the CO₂ concentration in ppm
+	if mh_z19.parse_frame(data) then
+		-- mh_z19.co2 contains the CO₂ concentration in ppm
 	end
 end
 
-port:write(mhz19.query())
+port:write(mhz19.c_query)
 ```
 
 ## Application Example
