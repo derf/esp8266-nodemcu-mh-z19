@@ -1,8 +1,8 @@
 # ESP8266 Lua/NodeMCU module for MH-Z19 CO₂ sensor
 
-This repository contains a Lua module (`mh-z19.lua`) as well as ESP8266/NodeMCU
-MQTT gateway application example (`init.lua`) for the **MH-Z19** carbon dioxide
-(CO₂) sensor.
+This repository contains an ESP8266 NodeMCU Lua module (`mh-z19.lua`) as well
+as MQTT / HomeAssistant / InfluxDB gateway application example (`init.lua`) for
+the **MH-Z19** carbon dioxide (CO₂) sensor.
 
 ![](https://finalrewind.org/projects/esp8266-nodemcu-mh-z19/media/preview.jpg)
 
