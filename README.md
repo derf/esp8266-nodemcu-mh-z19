@@ -64,8 +64,7 @@ The sensor performs a CO₂ measurement every one to five seconds, depending on 
 To use it, you need to create a **config.lua** file with WiFI and MQTT settings:
 
 ```lua
-station_cfg.ssid = "..."
-station_cfg.pwd = "..."
+station_cfg = {ssid = "...", pwd = "..."}
 mqtt_host = "..."
 ```
 
