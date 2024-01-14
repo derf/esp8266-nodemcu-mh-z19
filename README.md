@@ -29,7 +29,7 @@ following modules.
 Connect the MH-Z19 sensor to your ESP8266/NodeMCU board as follows.
 
 * MH-Z19 GND (black wire) → ESP8266/NodeMCU GND
-* MH-Z19 Vin (red wire) → ESP8266/NodeMCU 5V
+* MH-Z19 Vin (red wire) → NodeMCU 5V
 * MH-Z19 Rx (blue wire) → NodeMCU D1 (ESP8266 GPIO5)
 * MH-Z19 Tx (green wire) → NodeMCU D2 (ESP8266 GPIO4)
 
