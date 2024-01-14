@@ -1,10 +1,8 @@
-# ESP8266 Lua/NodeMCU module for MH-Z19 CO₂ sensor
+# ESP8266 Lua/NodeMCU module for MH-Z19 CO₂ sensors
 
 This repository contains an ESP8266 NodeMCU Lua module (`mh-z19.lua`) as well
 as MQTT / HomeAssistant / InfluxDB gateway application example (`init.lua`) for
-the **MH-Z19** carbon dioxide (CO₂) sensor.
-
-![](https://finalrewind.org/projects/esp8266-nodemcu-mh-z19/media/preview.jpg)
+**MH-Z19** carbon dioxide (CO₂) sensors connected via UART.
 
 ## Dependencies
 
@@ -21,7 +19,6 @@ following modules.
 * node
 * softuart
 * tmr
-* uart
 * wifi
 
 ## Setup
@@ -80,5 +77,9 @@ influx_url = "..."
 influx_attr = "..."
 ```
 
-Readings will be stored as `mh_z19[influx_attr] co2_ppm=...`.
+Readings will be stored as `mh_z19[influx_attr] co2_ppm=…`.
 So, unless `influx_attr = ''`, it must start with a comma, e.g. `influx_attr = ',device=' .. device_id`.
+
+## Images
+
+![](https://finalrewind.org/projects/esp8266-nodemcu-mh-z19/media/preview.jpg)
