@@ -76,7 +76,7 @@ influx_url = "..."
 influx_attr = "..."
 ```
 
-Readings will be stored as `mh_z19[influx_attr] co2_ppm=%d,temperature_celsius=%d,abc_ticks=%d,abc_count=%d`.
+Readings will be published as `mh_z19[influx_attr] co2_ppm=%d,temperature_celsius=%d,abc_ticks=%d,abc_count=%d`.
 So, unless `influx_attr = ''`, it must start with a comma, e.g. `influx_attr = ',device=' .. device_id`.
 
 ## Images
