@@ -54,7 +54,7 @@ function uart_callback(data)
 	end
 end
 
-port:write(mhz19.c_query)
+port:write(mh_z19.c_query)
 ```
 
 The sensor performs a CO₂ measurement every one to five seconds, depending on hardware revision.
