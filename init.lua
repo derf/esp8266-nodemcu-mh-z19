@@ -100,7 +100,7 @@ function hass_register()
 	local hass_device = string.format('{"connections":[["mac","%s"]],"identifiers":["%s"],"model":"ESP8266 + MH-Z19","name":"MH-Z19 %s","manufacturer":"derf"}', wifi.sta.getmac(), device_id, chip_id)
 	local hass_entity_base = string.format('"device":%s,"state_topic":"%s/data","expire_after":120', hass_device, mqtt_prefix)
 	local hass_co2 = string.format('{%s,"name":"CO₂","object_id":"%s_co2","unique_id":"%s_co2","device_class":"carbon_dioxide","unit_of_measurement":"ppm","value_template":"{{value_json.co2_ppm}}"}', hass_entity_base, device_id, device_id)
-	local hass_temp = string.format('{%s,"name":"Temperature","object_id":"%s_temp","unique_id":"%s_temp","device_class":"temperature","unit_of_measurement":"°c","value_template":"{{value_json.temperature_celsius}}","entity_category":"diagnostic"}', hass_entity_base, device_id, device_id)
+	local hass_temp = string.format('{%s,"name":"Temperature","object_id":"%s_temp","unique_id":"%s_temp","device_class":"temperature","unit_of_measurement":"°C","value_template":"{{value_json.temperature_celsius}}","entity_category":"diagnostic"}', hass_entity_base, device_id, device_id)
 	local hass_rssi = string.format('{%s,"name":"RSSI","object_id":"%s_rssi","unique_id":"%s_rssi","device_class":"signal_strength","unit_of_measurement":"dBm","value_template":"{{value_json.rssi_dbm}}","entity_category":"diagnostic"}', hass_entity_base, device_id, device_id)
 
 	mqttclient:publish("homeassistant/sensor/" .. device_id .. "/co2/config", hass_co2, 0, 1, function(client)
